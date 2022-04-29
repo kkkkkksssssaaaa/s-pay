@@ -1,17 +1,25 @@
-# Getting Started
+# 💳 S-PAY 
 
-### Reference Documentation
+_본 프로젝트는 현실의 서비스를 모티브한 토이프로젝트 입니다._  
 
-For further reference, please consider the following sections:
+* @author [@kkkkkksssssaaaa](https://github.com/kkkkkksssssaaaa) 🐯
+* @since 2022-04 ~
 
-* [Official Gradle documentation](https://docs.gradle.org)
-* [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.6.7/gradle-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.6.7/gradle-plugin/reference/html/#build-image)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.6.7/reference/htmlsingle/#using-boot-devtools)
+송금/결제/생활요금 납부 등 일상에서 자주 이루어지는 금융 행위들을 손쉽게 사용할 수 있는 생활 금융 플랫폼을 지향합니다. 
 
-### Additional Links
+---
 
-These additional references should also help you:
+### 🌐 환경
+* SpringBoot 2.6.7 🍃
+* Oracle JDK 17 ☕️
+* Gradle 7.4 🛠
 
-* [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
+### 💻 개발 환경
+* MacOS 
+* IntelliJ
 
+### ⛳️ TOBE
+* upgrade SpringBoot 3.0.0
+* deploy to public cloud infra
+* CI/CD
+* front-end
