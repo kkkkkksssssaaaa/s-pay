@@ -22,4 +22,15 @@ class NameTest {
         assertNotEquals(right, left);
     }
 
+    @Test
+    void 필드_값으로_한글만_입력할_수_있다() {
+        assertThrows(Exception.class, () -> Name.of("name"));
+        assertThrows(Exception.class, () -> Name.of("123"));
+        assertThrows(Exception.class, () -> Name.of("dlfma"));
+        assertThrows(Exception.class, () -> Name.of("이human"));
+        assertThrows(Exception.class, () -> Name.of("김이름1"));
+        assertThrows(Exception.class, () -> Name.of("김이름 "));
+        assertThrows(Exception.class, () -> Name.of(" "));
+    }
+
 }
