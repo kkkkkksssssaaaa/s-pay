@@ -5,10 +5,10 @@ import java.util.Optional;
 public final class Strings {
 
     public static boolean isPresent(String str) {
-        return !isNullOrEmpty(str);
+        return !isEmpty(str);
     }
 
-    public static boolean isNullOrEmpty(String str) {
+    public static boolean isEmpty(String str) {
         if (Optional.ofNullable(str).isEmpty()) {
             return true;
         }

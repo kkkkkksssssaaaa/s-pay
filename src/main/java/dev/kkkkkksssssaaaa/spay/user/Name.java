@@ -37,7 +37,7 @@ public class Name {
     }
 
     private void validate(String name) {
-        if (Strings.isNullOrEmpty(name)) {
+        if (Strings.isEmpty(name)) {
             // TODO 커스텀 예외 정의
             throw new IllegalArgumentException();
         }

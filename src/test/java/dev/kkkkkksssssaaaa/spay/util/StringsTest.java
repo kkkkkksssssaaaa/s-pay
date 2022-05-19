@@ -11,19 +11,19 @@ class StringsTest {
         String emptyString = "";
         String nullString = null;
 
-        assertTrue(Strings.isNullOrEmpty(""));
-        assertTrue(Strings.isNullOrEmpty(null));
-        assertTrue(Strings.isNullOrEmpty(emptyString));
-        assertTrue(Strings.isNullOrEmpty(nullString));
+        assertTrue(Strings.isEmpty(""));
+        assertTrue(Strings.isEmpty(null));
+        assertTrue(Strings.isEmpty(emptyString));
+        assertTrue(Strings.isEmpty(nullString));
     }
 
     @Test
     void 비어있지_않은_문자열에_대해_isNullOrEmpty가_거짓을_반환한다() {
         String notEmptyString = " ";
 
-        assertFalse(Strings.isNullOrEmpty(" "));
-        assertFalse(Strings.isNullOrEmpty(notEmptyString));
-        assertFalse(Strings.isNullOrEmpty("테스트임다"));
+        assertFalse(Strings.isEmpty(" "));
+        assertFalse(Strings.isEmpty(notEmptyString));
+        assertFalse(Strings.isEmpty("테스트임다"));
     }
 
     @Test
