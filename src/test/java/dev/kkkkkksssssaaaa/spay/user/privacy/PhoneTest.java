@@ -1,4 +1,4 @@
-package dev.kkkkkksssssaaaa.spay.user;
+package dev.kkkkkksssssaaaa.spay.user.privacy;
 
 import org.junit.jupiter.api.Test;
 

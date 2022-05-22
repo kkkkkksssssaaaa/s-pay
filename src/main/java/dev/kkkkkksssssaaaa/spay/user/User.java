@@ -1,30 +1,17 @@
 package dev.kkkkkksssssaaaa.spay.user;
 
-import java.util.Objects;
+import dev.kkkkkksssssaaaa.spay.user.privacy.Privacy;
 
 public class User {
 
-    private final Name name;
-    private final Phone phone;
+    private final Privacy privacy;
 
-    private User(Name name, Phone phone) {
-        this.name = name;
-        this.phone = phone;
+    private User(Privacy privacy) {
+        this.privacy = privacy;
     }
 
-    public static User of(String name,
-                          String phone) {
-        return new User(
-                Name.of(name),
-                Phone.of(phone));
-    }
-
-    public Name name() {
-        return this.name;
-    }
-
-    public Phone phone() {
-        return this.phone;
+    public static User fromPrivacy(Privacy privacy) {
+        return new User(privacy);
     }
 
     @Override
@@ -33,14 +20,12 @@ public class User {
             return false;
         }
 
-        return ((User) o).name().equals(this.name())
-                && ((User) o).phone().equals(this.phone());
+        return ((User) o).privacy.equals(this.privacy);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(
-                name(), phone());
+        return this.privacy.hashCode();
     }
 
 }

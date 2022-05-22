@@ -1,25 +1,24 @@
-package dev.kkkkkksssssaaaa.spay.user;
+package dev.kkkkkksssssaaaa.spay.user.privacy;
 
 import dev.kkkkkksssssaaaa.spay.util.Strings;
 
 import java.util.regex.Pattern;
 
-class Name {
+class Phone {
 
-    private static final int MIN_LENGTH = 1;
-    private static final int MAX_LENGTH = 5;
-    private static final String REGEX = "^[가-힣]*$";
+    private static final int LENGTH = 13;
+    private static final String REGEX = "^(010)-([\\d]{4})-([\\d]{4})$";
 
-    private final String name;
+    private final String phone;
 
-    private Name(String name) {
-        validate(name);
+    private Phone(String phone) {
+        validate(phone);
 
-        this.name = name;
+        this.phone = phone;
     }
 
-    protected static Name of(String name) {
-        return new Name(name);
+    protected static Phone of(String phone) {
+        return new Phone(phone);
     }
 
     @Override
@@ -28,21 +27,21 @@ class Name {
             return false;
         }
 
-        return ((Name) o).name.equals(this.name);
+        return ((Phone) o).phone.equals(this.phone);
     }
 
     @Override
     public int hashCode() {
-        return this.name.hashCode();
+        return this.phone.hashCode();
     }
 
-    private void validate(String name) {
-        if (Strings.isEmpty(name)) {
+    private void validate(String phone) {
+        if (Strings.isEmpty((phone))) {
             // TODO 커스텀 예외 정의
             throw new IllegalArgumentException();
         }
 
-        if (notMatch(name)) {
+        if (notMatch(phone)) {
             // TODO 커스텀 예외 정의
             throw new IllegalArgumentException();
         }
