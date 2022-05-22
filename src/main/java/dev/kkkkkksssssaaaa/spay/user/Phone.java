@@ -4,7 +4,7 @@ import dev.kkkkkksssssaaaa.spay.util.Strings;
 
 import java.util.regex.Pattern;
 
-public class Phone {
+class Phone {
 
     private static final int LENGTH = 13;
     private static final String REGEX = "^(010)-([\\d]{4})-([\\d]{4})$";
@@ -17,7 +17,7 @@ public class Phone {
         this.phone = phone;
     }
 
-    public static Phone of(String phone) {
+    protected static Phone of(String phone) {
         return new Phone(phone);
     }
 
