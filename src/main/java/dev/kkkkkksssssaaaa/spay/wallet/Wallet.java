@@ -10,7 +10,7 @@ public class Wallet {
     private final Money balance;
 
     private Wallet() {
-        this.balance = Money.of(0);
+        this.balance = Money.initZero();
     }
 
     public static Wallet newWallet() {
@@ -21,12 +21,14 @@ public class Wallet {
         return this.balance;
     }
 
-    public void fill(Money money) {
+    public void deposit(Money money) {
         this.getBalance().increase(money);
     }
 
-    public void takeMoney(Money money) {
+    public void withdraw(Money money) {
         this.getBalance().shrink(money);
     }
+
+
 
 }
