@@ -8,7 +8,22 @@ class Money {
     private static final int ZERO = 0;
     private static final int FULL = 1000000000;
 
-    private int money = 0;
+    private int money;
+
+    private Money(int money) {
+        checkFull(money);
+        checkZero(money);
+
+        this.money = money;
+    }
+
+    public static Money initZero() {
+        return new Money(ZERO);
+    }
+
+    public static Money of(int money) {
+        return new Money(money);
+    }
 
     protected void increase(Money money) {
         checkFull(money);
