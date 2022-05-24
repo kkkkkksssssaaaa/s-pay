@@ -11,8 +11,11 @@ class Money {
     private int money;
 
     private Money(int money) {
-        checkFull(money);
-        checkZero(money);
+        if (ZERO > money
+                || FULL < money) {
+            throw new IllegalArgumentException(
+                    String.format("최소 %d원, 최대 %d원의 금액만 입력할 수 있습니다.", ZERO, FULL));
+        }
 
         this.money = money;
     }
