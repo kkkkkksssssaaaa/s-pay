@@ -26,36 +26,36 @@ class Money {
     }
 
     protected void increase(Money money) {
-        checkFull(money);
+        checkFull(money.money);
 
         this.money += money.money;
     }
 
     protected void shrink(Money money) {
-        checkZero(money);
+        checkZero(money.money);
 
         this.money -= money.money;
     }
 
-    private void checkFull(Money money) {
-        if (money.money > FULL) {
+    private void checkFull(int money) {
+        if (money > FULL) {
             throw new IllegalArgumentException(
                     String.format("최대 보유 가능 금액은 %d원 입니다.", FULL));
         }
 
-        if ((this.money + money.money) > FULL) {
+        if ((this.money + money) > FULL) {
             throw new IllegalArgumentException(
                     String.format("최대 보유 가능 금액은 %d원 입니다.", FULL));
         }
     }
 
-    private void checkZero(Money money) {
-        if (this.money < money.money) {
+    private void checkZero(int money) {
+        if (this.money < money) {
             throw new IllegalArgumentException(
                     "소비하려는 금액이 현재 금액보다 더 클 수 없습니다.");
         }
 
-        if (money.money < 0) {
+        if (money < 0) {
             throw new IllegalArgumentException(
                     String.format("최소 보유 가능 금액은 %d원 입니다.",  ZERO));
         }
