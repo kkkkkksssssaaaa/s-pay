@@ -26,4 +26,48 @@ class MoneyTest {
         assertDoesNotThrow(() -> Money.of(999999999));
     }
 
+    @Test
+    void 돈이_증가될_때_기존_금액과_합산된_금액이_10억을_넘을_수_없다() {
+        Money left = Money.of(1);
+
+        assertThrows(IllegalArgumentException.class,
+                () -> left.increase(Money.of(1000000000)));
+    }
+
+    @Test
+    void 돈이_감소할_때_기존_금액에서_차감된_금액이_0원_미만일_수_없다() {
+        Money left = Money.of(1);
+
+        assertThrows(IllegalArgumentException.class,
+                () -> left.shrink(Money.of(2)));
+    }
+
+    @Test
+    void 돈이_감소할_때_기존_금액보다_큰_금액을_차감시킬_수_없다() {
+        Money left = Money.of(5000);
+
+        assertThrows(IllegalArgumentException.class,
+                () -> left.shrink(Money.of(5001)));
+    }
+
+    @Test
+    void 돈이_증가될_때_기존_금액과_합산된_금액이_10억_이하면_유효하다() {
+        Money left = Money.of(0);
+
+        assertDoesNotThrow(() -> left.increase(Money.of(0)));
+        assertDoesNotThrow(() -> left.increase(Money.of(50000)));
+        assertDoesNotThrow(() -> left.increase(Money.of(499950000)));
+        assertDoesNotThrow(() -> left.increase(Money.of(500000000)));
+    }
+
+    @Test
+    void 돈이_감소할_때_감소된_금액이_0원보다_많으면_유효하다() {
+        Money left = Money.of(1000000000);
+
+        assertDoesNotThrow(() -> left.shrink(Money.of(0)));
+        assertDoesNotThrow(() -> left.shrink(Money.of(50000)));
+        assertDoesNotThrow(() -> left.shrink(Money.of(499950000)));
+        assertDoesNotThrow(() -> left.shrink(Money.of(500000000)));
+    }
+
 }
