@@ -28,6 +28,20 @@ public class Money {
         return new Money(money);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (!(o.getClass()).equals(this.getClass())) {
+            return false;
+        }
+
+        return ((Money) o).money == this.money;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(this.money);
+    }
+
     protected void increase(Money money) {
         checkFull(money.money);
 
