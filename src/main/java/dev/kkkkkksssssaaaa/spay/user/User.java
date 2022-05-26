@@ -2,6 +2,9 @@ package dev.kkkkkksssssaaaa.spay.user;
 
 import dev.kkkkkksssssaaaa.spay.user.privacy.Privacy;
 
+/**
+ * 개인정보를 가지는 현실의 사람에 대한 정보를 가지는 사용자 모델
+ * */
 public class User {
 
     private final Privacy privacy;
