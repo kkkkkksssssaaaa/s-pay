@@ -29,6 +29,8 @@ public class Wallet {
         this.getBalance().shrink(money);
     }
 
-
+    public Money checkBalance() {
+        return this.balance;
+    }
 
 }

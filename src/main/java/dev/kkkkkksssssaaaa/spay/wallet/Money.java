@@ -3,7 +3,7 @@ package dev.kkkkkksssssaaaa.spay.wallet;
 /**
  * 돈을 나타내는 원자 클래스
  * */
-class Money {
+public class Money {
 
     private static final int ZERO = 0;
     private static final int FULL = 1000000000;
@@ -26,6 +26,20 @@ class Money {
 
     public static Money of(int money) {
         return new Money(money);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o.getClass()).equals(this.getClass())) {
+            return false;
+        }
+
+        return ((Money) o).money == this.money;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(this.money);
     }
 
     protected void increase(Money money) {
