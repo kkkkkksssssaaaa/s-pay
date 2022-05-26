@@ -3,7 +3,7 @@ package dev.kkkkkksssssaaaa.spay.wallet;
 /**
  * 돈을 나타내는 원자 클래스
  * */
-class Money {
+public class Money {
 
     private static final int ZERO = 0;
     private static final int FULL = 1000000000;
