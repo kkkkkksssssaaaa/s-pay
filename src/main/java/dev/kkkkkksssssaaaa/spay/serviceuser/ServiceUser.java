@@ -1,4 +1,4 @@
-package dev.kkkkkksssssaaaa.spay.customer;
+package dev.kkkkkksssssaaaa.spay.serviceuser;
 
 import dev.kkkkkksssssaaaa.spay.user.User;
 import dev.kkkkkksssssaaaa.spay.wallet.Money;
