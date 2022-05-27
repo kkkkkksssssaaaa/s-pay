@@ -4,6 +4,8 @@ import java.util.Optional;
 
 public final class Strings {
 
+    private Strings() {}
+
     public static boolean isPresent(String str) {
         return !isEmpty(str);
     }
