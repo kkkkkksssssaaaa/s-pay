@@ -16,6 +16,10 @@ public class ServiceUser {
         this.wallet = Wallet.newWallet();
     }
 
+    public static ServiceUser of(User user) {
+        return new ServiceUser(user);
+    }
+
     public void deposit(int money) {
         this.wallet.deposit(money);
     }
