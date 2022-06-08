@@ -33,4 +33,18 @@ public class ServiceUser {
         to.deposit(money);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (!this.getClass().equals(o.getClass())) {
+            return false;
+        }
+
+        return ((ServiceUser) o).user.equals(this.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return this.user.hashCode();
+    }
+
 }
