@@ -1,7 +1,6 @@
 package dev.kkkkkksssssaaaa.spay.serviceuser;
 
 import dev.kkkkkksssssaaaa.spay.user.User;
-import dev.kkkkkksssssaaaa.spay.wallet.Money;
 import dev.kkkkkksssssaaaa.spay.wallet.Wallet;
 
 /**
@@ -17,17 +16,35 @@ public class ServiceUser {
         this.wallet = Wallet.newWallet();
     }
 
-    public void deposit(Money money) {
+    public static ServiceUser of(User user) {
+        return new ServiceUser(user);
+    }
+
+    public void deposit(int money) {
         this.wallet.deposit(money);
     }
 
-    public void withdraw(Money money) {
+    public void withdraw(int money) {
         this.wallet.withdraw(money);
     }
 
     // TODO 별도의 송금 오브젝트를 생성하여 변경
-    public void wire(ServiceUser to, Money money) {
+    public void wire(ServiceUser to, int money) {
         to.deposit(money);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!this.getClass().equals(o.getClass())) {
+            return false;
+        }
+
+        return ((ServiceUser) o).user.equals(this.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return this.user.hashCode();
     }
 
 }

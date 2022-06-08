@@ -21,11 +21,11 @@ public class Wallet {
         return this.balance;
     }
 
-    public void deposit(Money money) {
+    public void deposit(int money) {
         this.getBalance().increase(money);
     }
 
-    public void withdraw(Money money) {
+    public void withdraw(int money) {
         this.getBalance().shrink(money);
     }
 

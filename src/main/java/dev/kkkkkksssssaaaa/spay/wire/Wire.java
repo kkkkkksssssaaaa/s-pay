@@ -21,6 +21,8 @@ public final class Wire {
     private Wire(ServiceUser from,
                  ServiceUser to,
                  Money money) {
+        validateFromTo(from, to);
+
         this.wiredAt = Dates.now();
         this.from = from;
         this.to = to;
@@ -31,6 +33,13 @@ public final class Wire {
                                      ServiceUser to,
                                      Money money) {
         return new Wire(from, to, money);
+    }
+
+    private void validateFromTo(ServiceUser from,
+                                ServiceUser to) {
+        if (from.equals(to)) {
+            throw new IllegalArgumentException();
+        }
     }
 
 }
