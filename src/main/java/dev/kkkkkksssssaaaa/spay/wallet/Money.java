@@ -30,6 +30,10 @@ public class Money {
 
     @Override
     public boolean equals(Object o) {
+        if (o.getClass().equals(Integer.class)) {
+            return ((Integer) o).equals(this.money);
+        }
+
         if (!(o.getClass()).equals(this.getClass())) {
             return false;
         }
@@ -42,16 +46,16 @@ public class Money {
         return Integer.hashCode(this.money);
     }
 
-    protected void increase(Money money) {
-        checkFull(money.money);
+    protected void increase(int money) {
+        checkFull(money);
 
-        this.money += money.money;
+        this.money += money;
     }
 
-    protected void shrink(Money money) {
-        checkZero(money.money);
+    protected void shrink(int money) {
+        checkZero(money);
 
-        this.money -= money.money;
+        this.money -= money;
     }
 
     private void checkFull(int money) {
