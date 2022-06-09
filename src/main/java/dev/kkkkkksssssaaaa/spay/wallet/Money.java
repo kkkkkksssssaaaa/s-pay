@@ -46,16 +46,16 @@ public class Money {
         return Integer.hashCode(this.money);
     }
 
-    protected void increase(int money) {
-        checkFull(money);
+    protected void increase(Money money) {
+        checkFull(money.money);
 
-        this.money += money;
+        this.money += money.money;
     }
 
-    protected void shrink(int money) {
-        checkZero(money);
+    protected void shrink(Money money) {
+        checkZero(money.money);
 
-        this.money -= money;
+        this.money -= money.money;
     }
 
     private void checkFull(int money) {
