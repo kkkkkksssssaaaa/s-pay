@@ -35,6 +35,10 @@ public final class Wire {
         return new Wire(from, to, money);
     }
 
+    public Money money() {
+        return this.money;
+    }
+
     private void validateFromTo(ServiceUser from,
                                 ServiceUser to) {
         if (from.equals(to)) {
