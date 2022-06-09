@@ -32,7 +32,9 @@ public class ServiceUser {
     public void wire(ServiceUser to, Money money) {
         Wire wire = Wire.toServiceUser(this, to, money);
 
-        to.deposit(money);
+        if (history.addWire(wire)) {
+            to.deposit(wire.money());
+        }
     }
 
     private void deposit(Money money) {
