@@ -12,10 +12,12 @@ public class ServiceUser {
 
     private final User user;
     private final Wallet wallet;
+    private final ServiceHistory history;
 
     private ServiceUser(User user) {
         this.user = user;
         this.wallet = Wallet.newWallet();
+        this.history = ServiceHistory.of(this);
     }
 
     public static ServiceUser of(User user) {
