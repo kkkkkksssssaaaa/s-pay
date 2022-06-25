@@ -5,6 +5,7 @@ import dev.kkkkkksssssaaaa.spay.util.Dates;
 import dev.kkkkkksssssaaaa.spay.wallet.Money;
 
 import java.time.ZonedDateTime;
+import java.util.UUID;
 
 /**
  * 송금에 대한 최소 단위 모델
@@ -13,6 +14,7 @@ import java.time.ZonedDateTime;
  * */
 public final class Wire {
 
+    private final UUID uuid = UUID.randomUUID();
     private final ZonedDateTime wiredAt;
     private final ServiceUser from;
     private final ServiceUser to;
@@ -35,11 +37,29 @@ public final class Wire {
         return new Wire(from, to, money);
     }
 
+    public Money money() {
+        return this.money;
+    }
+
     private void validateFromTo(ServiceUser from,
                                 ServiceUser to) {
         if (from.equals(to)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!this.getClass().equals(o.getClass())) {
+            return false;
+        }
+
+        return ((Wire) o).uuid.equals(this.uuid);
+    }
+
+    @Override
+    public int hashCode() {
+        return this.uuid.hashCode();
     }
 
 }
