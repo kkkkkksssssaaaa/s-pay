@@ -14,7 +14,8 @@ public abstract class AbstractName {
 
     protected AbstractName(String name, String regex,
                            int minLength, int maxLength) {
-        validate(name);
+        checkRegex(name, regex);
+        checkLength(name, minLength, maxLength);
 
         this.name = name;
         this.regex = regex;
@@ -40,19 +41,19 @@ public abstract class AbstractName {
         return this.name;
     }
 
-    private void validate(String name) {
+    private void checkRegex(String name, String regex) {
         if (Strings.isEmpty(name)) {
             // TODO 커스텀 예외 정의
             throw new IllegalArgumentException();
         }
 
-        if (notMatch(name)) {
+        if (notMatch(name, regex)) {
             // TODO 커스텀 예외 정의
             throw new IllegalArgumentException();
         }
     }
 
-    private boolean notMatch(String name) {
+    private boolean notMatch(String name, String regex) {
         return !Pattern.matches(regex, name);
     }
 
