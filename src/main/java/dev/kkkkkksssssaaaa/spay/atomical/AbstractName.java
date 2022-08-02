@@ -55,4 +55,14 @@ public abstract class AbstractName {
     private boolean notMatch(String name) {
         return !Pattern.matches(regex, name);
     }
+
+    private void checkLength(String name, int minLength, int maxLength) {
+        if (name.length() < minLength) {
+            throw new IllegalArgumentException();
+        }
+
+        if (name.length() > maxLength) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
