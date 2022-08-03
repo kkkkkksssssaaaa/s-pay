@@ -24,7 +24,7 @@ public final class Strings {
 
     public static boolean isBlank(String str) {
         if (Strings.isEmpty(str)) {
-            return false;
+            return true;
         }
 
         return str.equals(" ");
