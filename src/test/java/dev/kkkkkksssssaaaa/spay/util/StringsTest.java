@@ -57,4 +57,31 @@ class StringsTest {
             assertTrue(Strings.isPresent("테스트임다"));
         }
     }
+
+    @Nested
+    @DisplayName("isBlank")
+    class IsBlankTest {
+
+        @Test
+        void 공백_한_칸_문자열인_경우_true를_반환한다() {
+            assertTrue(Strings.isBlank(" "));
+        }
+
+        @Test
+        void 빈_문자열인_경우_true를_반환한다() {
+            assertTrue(Strings.isBlank(""));
+        }
+
+        @Test
+        void Null인_경우_true를_반환한다() {
+            assertTrue(Strings.isBlank(null));
+        }
+
+        @Test
+        void 공백_문자열이_아니거나_빈_문자열이_아닌_경우_false를_반환한다() {
+            assertFalse(Strings.isEmpty("빈"));
+            assertFalse(Strings.isEmpty("빈 문자"));
+            assertFalse(Strings.isEmpty("  "));
+        }
+    }
 }
