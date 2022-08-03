@@ -32,5 +32,4 @@ class NameTest {
         assertThrows(Exception.class, () -> Name.of("김이름 "));
         assertThrows(Exception.class, () -> Name.of(" "));
     }
-
 }
