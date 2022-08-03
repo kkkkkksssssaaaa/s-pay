@@ -22,4 +22,11 @@ public final class Strings {
         return false;
     }
 
+    public static boolean isBlank(String str) {
+        if (Strings.isEmpty(str)) {
+            return false;
+        }
+
+        return str.equals(" ");
+    }
 }
