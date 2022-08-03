@@ -24,7 +24,7 @@ public abstract class AbstractName {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public final boolean equals(Object o) {
         if (!o.getClass().equals(this.getClass())) {
             return false;
         }
@@ -33,7 +33,7 @@ public abstract class AbstractName {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         return this.name.hashCode();
     }
 

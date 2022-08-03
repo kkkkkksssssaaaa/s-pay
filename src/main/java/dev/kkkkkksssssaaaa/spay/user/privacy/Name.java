@@ -15,14 +15,4 @@ final class Name extends AbstractName {
     static Name of(String name) {
         return new Name(name);
     }
-
-    @Override
-    public boolean equals(Object o) {
-        return super.equals(o);
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
 }
