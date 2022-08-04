@@ -20,14 +20,19 @@ class WalletNameTest {
         }
 
         @Test
+        void 지갑_이름이_공백_한_글자여도_IllegalArgumentException을_던진다() {
+            assertThrows(IllegalArgumentException.class, () -> WalletName.of(" "));
+        }
+    }
+
+    @Nested
+    @DisplayName("LengthTest")
+    class LengthTest {
+
+        @Test
         void 지갑_이름이_한_글자_미만이면_IllegalArgumentException을_던진다() {
             assertThrows(IllegalArgumentException.class, () -> WalletName.of(""));
             assertThrows(IllegalArgumentException.class, () -> WalletName.of(null));
-        }
-
-        @Test
-        void 지갑_이름이_공백_한_글자여도_IllegalArgumentException을_던진다() {
-            assertThrows(IllegalArgumentException.class, () -> WalletName.of(" "));
         }
     }
 }
