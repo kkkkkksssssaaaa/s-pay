@@ -81,5 +81,4 @@ public final class Money {
                     String.format("최소 보유 가능 금액은 %d원 입니다.",  ZERO));
         }
     }
-
 }

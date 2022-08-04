@@ -54,5 +54,4 @@ public class ServiceUser {
     public int hashCode() {
         return this.user.hashCode();
     }
-
 }

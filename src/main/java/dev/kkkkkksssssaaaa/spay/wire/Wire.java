@@ -61,5 +61,4 @@ public final class Wire {
     public int hashCode() {
         return this.uuid.hashCode();
     }
-
 }

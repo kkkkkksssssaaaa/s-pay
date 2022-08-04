@@ -17,5 +17,4 @@ public class WireHistory {
     public Set<Wire> list() {
         return this.history;
     }
-
 }

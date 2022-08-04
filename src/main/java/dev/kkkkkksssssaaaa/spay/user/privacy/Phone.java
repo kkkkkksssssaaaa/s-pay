@@ -50,5 +50,4 @@ class Phone {
     private boolean notMatch(String name) {
         return !Pattern.matches(REGEX, name);
     }
-
 }

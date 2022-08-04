@@ -12,5 +12,4 @@ public final class Dates {
     public static ZonedDateTime now() {
         return ZonedDateTime.now(sysDefault);
     }
-
 }

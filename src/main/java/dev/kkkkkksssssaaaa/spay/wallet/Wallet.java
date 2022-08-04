@@ -32,5 +32,4 @@ public class Wallet {
     public Money checkBalance() {
         return this.balance;
     }
-
 }
