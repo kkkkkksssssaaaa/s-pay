@@ -42,7 +42,7 @@ public abstract class AbstractName {
     }
 
     private void checkRegex(String name, String regex) {
-        if (Strings.isEmpty(name)) {
+        if (Strings.isBlank(name)) {
             // TODO 커스텀 예외 정의
             throw new IllegalArgumentException();
         }
