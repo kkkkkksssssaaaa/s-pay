@@ -6,10 +6,6 @@ import java.util.regex.Pattern;
 
 public abstract class AbstractName {
 
-    private final int minLength;
-    private final int maxLength;
-    private final String regex;
-
     private final String name;
 
     protected AbstractName(String name, String regex,
@@ -18,9 +14,6 @@ public abstract class AbstractName {
         checkLength(name, minLength, maxLength);
 
         this.name = name;
-        this.regex = regex;
-        this.minLength = minLength;
-        this.maxLength = maxLength;
     }
 
     @Override
@@ -42,7 +35,7 @@ public abstract class AbstractName {
     }
 
     private void checkRegex(String name, String regex) {
-        if (Strings.isEmpty(name)) {
+        if (Strings.isBlank(name)) {
             // TODO 커스텀 예외 정의
             throw new IllegalArgumentException();
         }

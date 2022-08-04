@@ -26,5 +26,4 @@ public class ServiceHistory {
     public WireHistory wires() {
         return this.wireHistory;
     }
-
 }

@@ -47,5 +47,4 @@ public class Privacy {
         return Objects.hash(
                 name(), phone());
     }
-
 }

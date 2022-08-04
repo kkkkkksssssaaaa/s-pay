@@ -29,7 +29,7 @@ class WalletTest {
     }
 
     private Wallet newWallet() {
-        Wallet wallet = Wallet.newWallet();
+        Wallet wallet = Wallet.openUp();
 
         wallet.deposit(
                 Money.of(50000));

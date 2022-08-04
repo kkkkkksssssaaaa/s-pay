@@ -13,24 +13,19 @@ public class Wallet {
         this.balance = Money.initZero();
     }
 
-    public static Wallet newWallet() {
+    public static Wallet openUp() {
         return new Wallet();
     }
 
-    public Money getBalance() {
-        return this.balance;
-    }
-
     public void deposit(Money money) {
-        this.getBalance().increase(money);
+        this.checkBalance().increase(money);
     }
 
     public void withdraw(Money money) {
-        this.getBalance().shrink(money);
+        this.checkBalance().shrink(money);
     }
 
     public Money checkBalance() {
         return this.balance;
     }
-
 }

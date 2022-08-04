@@ -3,7 +3,7 @@ package dev.kkkkkksssssaaaa.spay.wallet;
 /**
  * 돈을 나타내는 원자 클래스
  * */
-public class Money {
+public final class Money {
 
     private static final int ZERO = 0;
     private static final int FULL = 1000000000;
@@ -81,5 +81,4 @@ public class Money {
                     String.format("최소 보유 가능 금액은 %d원 입니다.",  ZERO));
         }
     }
-
 }
