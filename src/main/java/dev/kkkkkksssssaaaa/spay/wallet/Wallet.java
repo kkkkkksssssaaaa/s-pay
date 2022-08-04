@@ -13,7 +13,7 @@ public class Wallet {
         this.balance = Money.initZero();
     }
 
-    public static Wallet newWallet() {
+    public static Wallet openUp() {
         return new Wallet();
     }
 

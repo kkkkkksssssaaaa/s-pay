@@ -16,7 +16,7 @@ public class ServiceUser {
 
     private ServiceUser(User user) {
         this.user = user;
-        this.wallet = Wallet.newWallet();
+        this.wallet = Wallet.openUp();
         this.history = ServiceHistory.of(this);
     }
 
