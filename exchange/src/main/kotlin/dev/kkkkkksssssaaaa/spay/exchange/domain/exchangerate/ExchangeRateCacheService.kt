@@ -15,12 +15,12 @@ class ExchangeRateCacheService {
         targetCurrency: CurrencyType
     ): ExchangeRateMap {
         val rateMap = getExchangeRateMap(baseCurrency)
+        val baseAmount = rateMap[targetCurrency]?.toLong() ?: throw IllegalArgumentException()
 
         return ExchangeRateMap(
-            baseAmount = rateMap.entries.first {
-                it.key == baseCurrency
-            }.value.toLong(),
-            rateMap
+            baseCurrencyType = baseCurrency,
+            baseAmount = baseAmount,
+            map = rateMap
         )
     }
 
