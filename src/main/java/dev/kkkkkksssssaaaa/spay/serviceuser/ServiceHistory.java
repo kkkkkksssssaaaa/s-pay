@@ -8,15 +8,13 @@ import dev.kkkkkksssssaaaa.spay.wire.WireHistory;
  * */
 public class ServiceHistory {
 
-    private final ServiceUser user;
     private final WireHistory wireHistory = new WireHistory();
 
-    private ServiceHistory(ServiceUser user) {
-        this.user = user;
+    private ServiceHistory() {
     }
 
-    public static ServiceHistory of(ServiceUser user) {
-        return new ServiceHistory(user);
+    public static ServiceHistory of() {
+        return new ServiceHistory();
     }
 
     public boolean addWire(Wire wire) {
