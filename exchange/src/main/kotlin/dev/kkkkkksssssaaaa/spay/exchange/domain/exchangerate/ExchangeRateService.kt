@@ -1,12 +1,24 @@
 package dev.kkkkkksssssaaaa.spay.exchange.domain.exchangerate
 
 import dev.kkkkkksssssaaaa.spay.exchange.domain.currency.CurrencyType
+import org.springframework.stereotype.Service
 
-class ExchangeRateService {
+@Service
+class ExchangeRateService(
+    private val exchangeRateCacheService: ExchangeRateCacheService
+) {
     fun getExchangeRate(
         baseCurrencyType: CurrencyType,
         targetCurrencyType: CurrencyType
-    ) {
-        // 환율 조회
+    ): ExchangeRate {
+        val exchangeRateMap = exchangeRateCacheService.getExchangeRate(
+            baseCurrencyType,
+            targetCurrencyType
+        )
+
+        return ExchangeRate(
+            baseAmount = exchangeRateMap.baseAmount,
+            targetAmount = exchangeRateMap.find(targetCurrencyType)
+        )
     }
 }
