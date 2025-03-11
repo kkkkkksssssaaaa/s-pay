@@ -1,5 +1,6 @@
 package dev.kkkkkksssssaaaa.spay.exchange.domain.exchange.processing
 
+import dev.kkkkkksssssaaaa.spay.exchange.domain.money.Money
 import dev.kkkkkksssssaaaa.spay.exchange.domain.wallet.WalletService
 import org.springframework.stereotype.Service
 
@@ -15,7 +16,7 @@ class ExchangeValidationService(
     private val walletService: WalletService
 ) {
     fun doValidate(
-        calculatedAmount: Double,
+        calculatedAmount: Money,
         request: ExchangeValidationRequest
     ) {
         checkBalance(
@@ -27,12 +28,12 @@ class ExchangeValidationService(
     }
 
     fun checkBalance(
-        calculatedAmount: Double,
+        calculatedMoney: Money,
         request: ExchangeValidationRequest
     ) {
         val wallet = walletService.get(request.exchangeRequest.walletId)
 
-        if (wallet.amount < calculatedAmount) {
+        if (wallet.amount < calculatedMoney.amount) {
             throw IllegalArgumentException("Insufficient balance")
         }
     }
