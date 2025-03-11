@@ -1,6 +1,8 @@
 package dev.kkkkkksssssaaaa.spay.exchange.domain.exchangerate
 
+import dev.kkkkkksssssaaaa.spay.exchange.domain.currency.Currency
 import dev.kkkkkksssssaaaa.spay.exchange.domain.currency.CurrencyType
+import dev.kkkkkksssssaaaa.spay.exchange.domain.money.Money
 import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
 
@@ -8,25 +10,27 @@ import org.springframework.stereotype.Service
 class ExchangeRateCacheService {
     @Cacheable(
         value = ["exchangeRate"],
-        key = "{#baseCurrency.name()}"
+        key = "{#baseCurrency.type}"
     )
     fun getExchangeRate(
-        baseCurrency: CurrencyType,
-        targetCurrency: CurrencyType
+        baseCurrency: Currency,
+        targetCurrency: Currency
     ): ExchangeRateMap {
-        val rateMap = getExchangeRateMap(baseCurrency)
-        val baseAmount = rateMap[targetCurrency]?.toLong() ?: throw IllegalArgumentException()
+        val rateMap = getExchangeRateMap(baseCurrency.type)
+        val baseAmount = rateMap[targetCurrency.type] ?: throw IllegalArgumentException()
 
         return ExchangeRateMap(
-            baseCurrencyType = baseCurrency,
-            baseAmount = baseAmount,
+            base = Money(
+                amount = baseAmount,
+                currency = baseCurrency
+            ),
             map = rateMap
         )
     }
 
     // TODO: 환율 조회 openapi 호출
     private fun getExchangeRateMap(
-        baseCurrency: CurrencyType
+        baseCurrencyType: CurrencyType
     ): Map<CurrencyType, Double> {
         val newMap: MutableMap<CurrencyType, Double> = mutableMapOf()
 
