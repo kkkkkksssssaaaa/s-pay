@@ -34,7 +34,7 @@ class ExchangeRateServiceTest {
     @DisplayName("getExchangeRate")
     inner class GetExchangeRateTest {
         @Test
-        fun `원화에서 달러를 환전할 수 있다`() {
+        fun `원화를 기준으로 현재 달러 환율을 조회할 수 있다`() {
             // given
             `when`(exchangeRateCacheService.getExchangeRate(CurrencyType.KRW, CurrencyType.USD))
                 .then { mockExchangeRateMap }
