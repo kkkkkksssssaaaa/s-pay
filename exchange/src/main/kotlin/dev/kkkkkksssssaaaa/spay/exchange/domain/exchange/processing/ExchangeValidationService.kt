@@ -33,7 +33,7 @@ class ExchangeValidationService(
     ) {
         val wallet = walletService.get(request.exchangeRequest.walletId)
 
-        if (wallet.amount < calculatedMoney.amount) {
+        if (wallet.amount < calculatedMoney.value) {
             throw IllegalArgumentException("Insufficient balance")
         }
     }
