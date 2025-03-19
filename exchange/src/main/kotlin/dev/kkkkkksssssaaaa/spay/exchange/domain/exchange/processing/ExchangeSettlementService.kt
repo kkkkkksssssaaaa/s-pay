@@ -22,7 +22,7 @@ class ExchangeSettlementService(
 ) {
     fun doSettlement(request: ExchangeRequest) {
         val fee = buyFee.doCalculate(request.exchangedMoney)
-        val finalAmountValue = request.exchangedMoney.amount - fee.amount.amount
+        val finalAmountValue = request.exchangedMoney.value - fee.amount.value
 
 
         // TODO: 출금 처리

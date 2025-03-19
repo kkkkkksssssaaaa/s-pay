@@ -22,13 +22,13 @@ class ExchangeService(
 
         // 2. 환전할 금액만큼 지갑에 돈이 있는지 확인
         val exchangeRequest = ExchangeValidationRequest(
-            exchangeRate = exchangeRate,
+            exchangedRate = exchangeRate,
             exchangeRequest = request
         )
 
         val exchangedAmount = calculateExchangeAmount(
             ExchangeValidationRequest(
-                exchangeRate = exchangeRate,
+                exchangedRate = exchangeRate,
                 exchangeRequest = request
             )
         )
@@ -39,7 +39,7 @@ class ExchangeService(
         )
 
         // 3. 수수료 계산
-        val fee = settlement.doSettlement(exchangedAmount)
+        val fee = settlement.doSettlement(request)
 //        val finelAmount = exchangedAmount.minus(fee)
 
 
@@ -49,8 +49,8 @@ class ExchangeService(
     fun calculateExchangeAmount(
         request: ExchangeValidationRequest
     ): Money {
-        val result = request.exchangeRate.target.amount *
-            request.exchangeRequest.exchangedMoney.amount
+        val result = request.exchangedRate.target.value *
+            request.exchangeRequest.exchangedMoney.value
 
         if (result <= 0) {
             throw IllegalArgumentException("Invalid request for this exchange")
@@ -58,7 +58,7 @@ class ExchangeService(
 
         return Money(
             currency = request.exchangeRequest.targetCurrency,
-            amount = result
+            value = result
         )
     }
 }
