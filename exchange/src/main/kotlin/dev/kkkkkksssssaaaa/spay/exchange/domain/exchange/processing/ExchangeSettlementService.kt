@@ -17,12 +17,12 @@ import org.springframework.stereotype.Service
 @Service
 class ExchangeSettlementService(
     private val buyFee: CalculateBuyFeeService,
-    private val saleFee: CalculateSellFeeService,
+    private val sellFee: CalculateSellFeeService,
     private val walletService: WalletService,
 ) {
     fun doSettlement(request: ExchangeRequest) {
-        val fee = buyFee.doCalculate(request.exchangedMoney)
-        val finalAmountValue = request.exchangedMoney.value - fee.amount.value
+        val fee = buyFee.doCalculate(request.targetAmount)
+        val finalAmountValue = request.targetAmount.value - fee.amount.value
 
 
         // TODO: 출금 처리
