@@ -33,10 +33,10 @@ class CalculateBuyFeeService(
         strategy: Strategy,
         exchangeMoney: Money
     ): Money {
-        val feeAmount = exchangeMoney.amount / 100.0 * strategy.value
+        val feeAmount = exchangeMoney.value / 100.0 * strategy.value
 
         return Money(
-            amount = feeAmount,
+            value = feeAmount,
             currency = exchangeMoney.currency
         )
     }
@@ -45,17 +45,17 @@ class CalculateBuyFeeService(
         strategy: Strategy,
         exchangeMoney: Money
     ): Money {
-        return when (exchangeMoney.amount) {
+        return when (exchangeMoney.value) {
             in 100000.0..199999.9 -> Money(
-                amount = 2000.0,
+                value = 2000.0,
                 currency = exchangeMoney.currency
             )
             in 200000.0..499999.9 -> Money(
-                amount = 4000.0,
+                value = 4000.0,
                 currency = exchangeMoney.currency
             )
             else -> Money(
-                amount = 0.0,
+                value = 0.0,
                 currency = exchangeMoney.currency
             )
         }

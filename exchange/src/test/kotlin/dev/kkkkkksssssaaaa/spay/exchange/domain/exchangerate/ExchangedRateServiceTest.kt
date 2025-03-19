@@ -22,28 +22,28 @@ class ExchangedRateServiceTest {
     private val mockExchangeRateInfo = ExchangeRateInfo(
         Money(
             currency = Won(),
-            amount = 1000.0
+            value = 1000.0
         ),
         setOf(
             Money(
                 currency = Won(),
-                amount = 1000.0
+                value = 1000.0
             ),
             Money(
                 currency = Dollar(),
-                amount = 1448.5
+                value = 1448.5
             ),
             Money(
                 currency = Yen(),
-                amount = 966.6
+                value = 966.6
             ),
             Money(
                 currency = Yuan(),
-                amount = 199.8
+                value = 199.8
             ),
             Money(
                 currency = Euro(),
-                amount = 1550.8
+                value = 1550.8
             )
         )
     )
@@ -64,8 +64,8 @@ class ExchangedRateServiceTest {
             )
 
             // then
-            assertEquals(1000.0, exchangeRate.base.amount)
-            assertEquals(1448.5, exchangeRate.target.amount)
+            assertEquals(1000.0, exchangeRate.base.value)
+            assertEquals(1448.5, exchangeRate.target.value)
         }
     }
 }

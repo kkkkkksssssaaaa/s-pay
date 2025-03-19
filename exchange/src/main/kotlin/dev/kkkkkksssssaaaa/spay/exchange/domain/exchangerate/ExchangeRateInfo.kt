@@ -12,7 +12,7 @@ data class ExchangeRateInfo(
             ?.let {
                 Money(
                     currency = it.currency,
-                    amount = it.amount
+                    value = it.value
                 )
             } ?: throw IllegalArgumentException(
                 "No exchange rate found for currency: ${targetCurrency.type}"
