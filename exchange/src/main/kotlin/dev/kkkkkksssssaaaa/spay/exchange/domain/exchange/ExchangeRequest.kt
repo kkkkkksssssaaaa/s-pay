@@ -6,6 +6,6 @@ import dev.kkkkkksssssaaaa.spay.exchange.domain.money.Money
 data class ExchangeRequest(
     val walletId: Long,
     val targetCurrency: Currency,
-    val exchangedMoney: Money,
+    val targetAmount: Money,
     val baseCurrency: Currency,
 )

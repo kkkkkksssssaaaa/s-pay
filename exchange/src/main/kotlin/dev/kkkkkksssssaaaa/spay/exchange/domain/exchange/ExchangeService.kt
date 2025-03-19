@@ -4,7 +4,6 @@ import dev.kkkkkksssssaaaa.spay.exchange.domain.exchange.processing.ExchangeSett
 import dev.kkkkkksssssaaaa.spay.exchange.domain.exchange.processing.ExchangeValidationRequest
 import dev.kkkkkksssssaaaa.spay.exchange.domain.exchange.processing.ExchangeValidationService
 import dev.kkkkkksssssaaaa.spay.exchange.domain.exchangerate.ExchangeRateService
-import dev.kkkkkksssssaaaa.spay.exchange.domain.money.Money
 import org.springframework.stereotype.Service
 
 @Service
@@ -26,10 +25,10 @@ class ExchangeService(
             exchangeRequest = request
         )
 
-        val exchangedAmount = calculateExchangeAmount(
-            ExchangeValidationRequest(
-                exchangedRate = exchangeRate,
-                exchangeRequest = request
+        val exchangedAmount = ExchangeAmountCalculator.doCalculate(
+            ExchangeCalculateRequest(
+                exchangeRate = exchangeRate,
+                targetAmount = request.targetAmount
             )
         )
 
@@ -46,19 +45,5 @@ class ExchangeService(
         // 4. 입/출금 처리
     }
 
-    fun calculateExchangeAmount(
-        request: ExchangeValidationRequest
-    ): Money {
-        val result = request.exchangedRate.target.value *
-            request.exchangeRequest.exchangedMoney.value
 
-        if (result <= 0) {
-            throw IllegalArgumentException("Invalid request for this exchange")
-        }
-
-        return Money(
-            currency = request.exchangeRequest.targetCurrency,
-            value = result
-        )
-    }
 }
