@@ -26,7 +26,7 @@ class ExchangeValidationService {
         wallet: Wallet,
         calculatedAmount: Money,
     ) {
-        if (wallet.amount < calculatedAmount.value) {
+        if (wallet.balance < calculatedAmount.value) {
             throw IllegalArgumentException("Insufficient balance")
         }
     }
