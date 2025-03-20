@@ -1,7 +1,7 @@
 package dev.kkkkkksssssaaaa.spay.exchange.domain.exchange.processing
 
 import dev.kkkkkksssssaaaa.spay.exchange.domain.money.Money
-import dev.kkkkkksssssaaaa.spay.exchange.domain.wallet.WalletService
+import dev.kkkkkksssssaaaa.spay.exchange.domain.wallet.Wallet
 import org.springframework.stereotype.Service
 
 /**
@@ -12,28 +12,21 @@ import org.springframework.stereotype.Service
  * - 환전할 금액이 0보다 작을 경우 환전할 수 없다.
  * */
 @Service
-class ExchangeValidationService(
-    private val walletService: WalletService
-) {
+class ExchangeValidationService {
     fun doValidate(
+        wallet: Wallet,
         calculatedAmount: Money,
-        request: ExchangeValidationRequest
     ) {
-        checkBalance(
-            calculatedAmount,
-            request
-        )
+        checkBalance(wallet, calculatedAmount)
 
         // TODO: add more validation strategies.....
     }
 
     fun checkBalance(
-        calculatedMoney: Money,
-        request: ExchangeValidationRequest
+        wallet: Wallet,
+        calculatedAmount: Money,
     ) {
-        val wallet = walletService.get(request.exchangeRequest.walletId)
-
-        if (wallet.amount < calculatedMoney.value) {
+        if (wallet.amount < calculatedAmount.value) {
             throw IllegalArgumentException("Insufficient balance")
         }
     }
