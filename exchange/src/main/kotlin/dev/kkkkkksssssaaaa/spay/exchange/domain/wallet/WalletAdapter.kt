@@ -1,6 +1,7 @@
 package dev.kkkkkksssssaaaa.spay.exchange.domain.wallet
 
-import dev.kkkkkksssssaaaa.spay.exchange.domain.currency.CurrencyType
+import dev.kkkkkksssssaaaa.spay.exchange.domain.currency.impl.Won
+import dev.kkkkkksssssaaaa.spay.exchange.domain.money.Money
 import org.springframework.stereotype.Service
 
 // TODO: wallet micro service call
@@ -13,8 +14,10 @@ internal class WalletAdapterImpl: WalletAdapter {
     override fun get(id: Long): Wallet {
         return Wallet(
             id = id,
-            amount = 10000,
-            baseCurrency = CurrencyType.KRW
+            amount = Money(
+                value = 100000.0,
+                currency = Won(),
+            ),
         )
     }
 }
