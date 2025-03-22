@@ -14,7 +14,7 @@ internal class WalletAdapterImpl: WalletAdapter {
     override fun get(id: Long): Wallet {
         return Wallet(
             id = id,
-            amount = Money(
+            balance = Money(
                 value = 100000.0,
                 currency = Won(),
             ),

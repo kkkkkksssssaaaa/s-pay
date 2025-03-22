@@ -17,16 +17,30 @@ class ExchangeValidationService {
         wallet: Wallet,
         calculatedAmount: Money,
     ) {
+        checkCanExchange(wallet)
+        checkAmount(calculatedAmount)
         checkBalance(wallet, calculatedAmount)
 
         // TODO: add more validation strategies.....
     }
 
-    fun checkBalance(
+    private fun checkCanExchange(wallet: Wallet) {
+        if (wallet.balance.value == 0.0) {
+            throw IllegalArgumentException("Insufficient balance")
+        }
+    }
+
+    private fun checkAmount(calculatedAmount: Money) {
+        if (calculatedAmount.value <= 0.0) {
+            throw IllegalArgumentException("Invalid amount")
+        }
+    }
+
+    private fun checkBalance(
         wallet: Wallet,
         calculatedAmount: Money,
     ) {
-        if (wallet.amount < calculatedAmount.value) {
+        if (wallet.balance < calculatedAmount.value) {
             throw IllegalArgumentException("Insufficient balance")
         }
     }
