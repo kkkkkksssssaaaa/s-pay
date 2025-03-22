@@ -4,6 +4,26 @@ import dev.kkkkkksssssaaaa.spay.exchange.domain.exchangerate.ExchangedRate
 import dev.kkkkkksssssaaaa.spay.exchange.domain.money.Money
 
 /**
+ * @property exchangeRate 환율
+ * @property targetAmount 환전할 목표 금액
+ * */
+data class ExchangeCalculateRequest(
+    val exchangeRate: ExchangedRate,
+    var targetAmount: Money
+)
+
+/**
+ * 환전 결과
+ *
+ * @property base 기준 통화, 환전할 외화 * 기준 통화의 현재 환율
+ * @property target 환전할 외화 금액
+ * */
+data class ExchangeResult(
+    val base: Money,
+    val target: Money
+)
+
+/**
  * 환율 계산
  *
  * 현재 환율에 맞게 환전할 외화를 계산하고,
