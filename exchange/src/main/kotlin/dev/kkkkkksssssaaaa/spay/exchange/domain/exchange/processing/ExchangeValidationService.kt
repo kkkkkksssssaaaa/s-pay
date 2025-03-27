@@ -31,7 +31,7 @@ class ExchangeValidationService {
     }
 
     private fun checkAmount(calculatedAmount: Money) {
-        if (calculatedAmount.value <= 0.0) {
+        if (calculatedAmount.value == 0.0) {
             throw IllegalArgumentException("Invalid amount")
         }
     }
@@ -40,7 +40,7 @@ class ExchangeValidationService {
         wallet: Wallet,
         calculatedAmount: Money,
     ) {
-        if (wallet.balance < calculatedAmount.value) {
+        if (wallet.balance < calculatedAmount) {
             throw IllegalArgumentException("Insufficient balance")
         }
     }
