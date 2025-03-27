@@ -28,6 +28,8 @@ data class ExchangeResult(
  *
  * 현재 환율에 맞게 환전할 외화를 계산하고,
  * 현재 환율에 맞는 기준 통화를 계산
+ *
+ * TODO: 환전 결과가 소수점인 경우 반올림 처리
  * */
 class ExchangeAmountCalculator {
     companion object {
