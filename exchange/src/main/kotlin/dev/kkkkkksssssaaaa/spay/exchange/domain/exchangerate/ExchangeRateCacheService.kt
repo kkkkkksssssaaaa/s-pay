@@ -1,6 +1,9 @@
 package dev.kkkkkksssssaaaa.spay.exchange.domain.exchangerate
 
+import dev.kkkkkksssssaaaa.spay.exchange.domain.currency.Currency
 import dev.kkkkkksssssaaaa.spay.exchange.domain.currency.CurrencyType
+import dev.kkkkkksssssaaaa.spay.exchange.domain.currency.impl.*
+import dev.kkkkkksssssaaaa.spay.exchange.domain.money.Money
 import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
 
@@ -8,32 +11,49 @@ import org.springframework.stereotype.Service
 class ExchangeRateCacheService {
     @Cacheable(
         value = ["exchangeRate"],
-        key = "{#baseCurrency.name()}"
+        key = "{#baseCurrency.type}"
     )
     fun getExchangeRate(
-        baseCurrency: CurrencyType,
-        targetCurrency: CurrencyType
-    ): ExchangeRateMap {
-        val rateMap = getExchangeRateMap(baseCurrency)
+        baseCurrency: Currency,
+        targetCurrency: Currency
+    ): ExchangeRateInfo {
+        val exchangeRate = getExchangeRate(baseCurrency.type)
+        val base = exchangeRate.firstOrNull { it.currency == baseCurrency }
+            ?: throw IllegalArgumentException(
+                "No exchange rate found for currency: ${baseCurrency.type}"
+            )
 
-        return ExchangeRateMap(
-            baseAmount = rateMap.entries.first {
-                it.key == baseCurrency
-            }.value.toLong(),
-            rateMap
+        return ExchangeRateInfo(
+            base = base,
+            items = exchangeRate
         )
     }
 
     // TODO: 환율 조회 openapi 호출
-    private fun getExchangeRateMap(
-        baseCurrency: CurrencyType
-    ): Map<CurrencyType, Double> {
-        val newMap: MutableMap<CurrencyType, Double> = mutableMapOf()
-
-        CurrencyType.entries.map {
-            newMap.put(it, 1000.0)
-        }
-
-        return newMap
+    private fun getExchangeRate(
+        baseCurrencyType: CurrencyType
+    ): Set<Money> {
+        return setOf(
+            Money(
+                currency = Won(),
+                value = 1000.0
+            ),
+            Money(
+                currency = Dollar(),
+                value = 1448.5
+            ),
+            Money(
+                currency = Yen(),
+                value = 966.6
+            ),
+            Money(
+                currency = Yuan(),
+                value = 199.8
+            ),
+            Money(
+                currency = Euro(),
+                value = 1550.8
+            )
+        )
     }
 }
