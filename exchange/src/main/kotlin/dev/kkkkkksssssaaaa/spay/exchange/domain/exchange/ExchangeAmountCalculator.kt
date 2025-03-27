@@ -34,14 +34,12 @@ class ExchangeAmountCalculator {
         fun doCalculate(
             request: ExchangeCalculateRequest
         ): ExchangeResult {
-            val target = doCalculateTarget(
-                request.exchangeRate,
-                request.targetAmount
-            )
+            val target = request.targetAmount
 
-            val base = doCalculateBase(
-                request.exchangeRate,
-                request.targetAmount
+            val base = Money(
+                currency = request.exchangeRate.base.currency,
+                value = request.exchangeRate.target.value *
+                    request.targetAmount.value
             )
 
             return ExchangeResult(
@@ -50,34 +48,4 @@ class ExchangeAmountCalculator {
             )
         }
     }
-}
-
-private fun doCalculateTarget(
-    exchangedRate: ExchangedRate,
-    targetAmount: Money,
-): Money {
-    if (targetAmount <= 0.0) {
-        throw IllegalArgumentException("Invalid request for this exchange")
-    }
-
-    return Money(
-        currency = exchangedRate.target.currency,
-        value = targetAmount.value
-    )
-}
-
-private fun doCalculateBase(
-    exchangedRate: ExchangedRate,
-    targetAmount: Money,
-): Money {
-    val baseResult = exchangedRate.target.value * targetAmount.value
-
-    if (baseResult <= 0.0) {
-        throw IllegalArgumentException("Invalid request for this exchange")
-    }
-
-    return Money(
-        currency = exchangedRate.base.currency,
-        value = baseResult
-    )
 }
