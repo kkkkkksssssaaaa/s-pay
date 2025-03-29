@@ -65,4 +65,42 @@ class ExchangeAmountCalculatorTest {
             )
         }
     }
+
+    @Nested
+    @DisplayName("환전 결과가 소수점이면 반올림한다")
+    inner class RoundingTest {
+        /**
+         * 환율 정보
+         *
+         * 원화 1천원 기준 1달러에 1450원
+         * */
+        private val mockExchangedRate = ExchangedRate(
+            base = Money(
+                currency = Won(),
+                value = 1000.0,
+            ),
+            target = Money(
+                currency = Dollar(),
+                value = 1450.3,
+            ),
+        )
+
+        @Test
+        fun doTest() {
+            val calculateResult = ExchangeAmountCalculator.doCalculate(
+                ExchangeCalculateRequest(
+                    exchangeRate = mockExchangedRate,
+                    targetAmount = Money(
+                        currency = Dollar(),
+                        value = 5.0,
+                    )
+                )
+            )
+
+            assertEquals(
+                7252.0,
+                calculateResult.base.value,
+            )
+        }
+    }
 }
