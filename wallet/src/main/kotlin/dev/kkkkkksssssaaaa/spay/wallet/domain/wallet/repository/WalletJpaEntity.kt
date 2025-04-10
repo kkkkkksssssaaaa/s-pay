@@ -41,4 +41,10 @@ class WalletJpaEntity(
     )
     var userId: Long = 0L
         protected set
+
+    fun doUpdateBalance(
+        balance: Double,
+    ) {
+        this.balance = balance
+    }
 }
