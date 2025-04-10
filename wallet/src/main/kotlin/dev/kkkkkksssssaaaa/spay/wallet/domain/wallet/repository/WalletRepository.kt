@@ -17,6 +17,7 @@ interface WalletCustomRepository {
 internal class WalletCustomRepositoryImpl(
     private val queryFactory: JPAQueryFactory,
 ): WalletCustomRepository {
+    // TODO: 사용자가 지갑을 여러 개 가질 경우 예외 처리 필요
     override fun find(user: User): WalletJpaEntity? {
         return queryFactory.selectFrom(walletJpaEntity)
             .where(
