@@ -37,7 +37,7 @@ abstract class CommonJpaEntity {
         protected set
 
     @Column(
-        nullable = false,
+        nullable = true,
         updatable = false,
         name = "updated_at"
     )
@@ -46,7 +46,7 @@ abstract class CommonJpaEntity {
         protected set
 
     @Column(
-        nullable = false,
+        nullable = true,
         updatable = false,
         name = "updated_by"
     )
