@@ -1,7 +1,7 @@
 package dev.kkkkkksssssaaaa.spay.authorization.domain.user
 
 import dev.kkkkkksssssaaaa.spay.authorization.domain.token.UserInfo
-import org.springframework.cloud.openfeign.FeignClient
+import org.springframework.stereotype.Component
 
 interface UserAdapter {
     fun verifyUser(
@@ -10,11 +10,8 @@ interface UserAdapter {
     ): UserInfo
 }
 
-@FeignClient(
-    name = "user-service",
-    url = "http://user-service.local"
-)
-internal interface UserAdapterImpl: UserAdapter {
+@Component
+internal class UserAdapterImpl: UserAdapter {
     override fun verifyUser(
         username: String,
         password: String
