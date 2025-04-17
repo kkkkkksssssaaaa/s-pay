@@ -1,0 +1,9 @@
+### login
+POST {{host.auth}}/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "1234"
+}
+###
