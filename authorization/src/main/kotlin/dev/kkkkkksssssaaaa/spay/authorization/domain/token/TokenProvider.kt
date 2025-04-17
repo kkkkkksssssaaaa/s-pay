@@ -7,7 +7,7 @@ import java.util.Date
 
 @Component
 class TokenProvider {
-    private val secret = "my-very-secret-key" // 실제론 외부에서 주입
+    private val secret = "my_super_secure_32_byte_secret_key!" // 실제론 외부에서 주입
     private val key = Keys.hmacShaKeyFor(secret.toByteArray())
 
     fun createAccessToken(user: UserInfo): Token {
