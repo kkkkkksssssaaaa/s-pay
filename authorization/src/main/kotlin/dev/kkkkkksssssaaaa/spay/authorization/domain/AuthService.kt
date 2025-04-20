@@ -2,6 +2,7 @@ package dev.kkkkkksssssaaaa.spay.authorization.domain
 
 import dev.kkkkkksssssaaaa.spay.authorization.domain.token.TokenProvider
 import dev.kkkkkksssssaaaa.spay.authorization.domain.token.TokenResponse
+import dev.kkkkkksssssaaaa.spay.authorization.domain.token.UserInfo
 import dev.kkkkkksssssaaaa.spay.authorization.domain.token.repository.RefreshTokenEntity
 import dev.kkkkkksssssaaaa.spay.authorization.domain.token.repository.TokenRepository
 import dev.kkkkkksssssaaaa.spay.authorization.domain.user.UserAdapter
@@ -23,12 +24,18 @@ class AuthService(
         val refreshToken = tokenProvider.createRefreshToken(user)
 
         tokenRepository.save(
-            RefreshTokenEntity(user.userId, refreshToken.value)
+            RefreshTokenEntity(user.id, refreshToken.value)
         )
 
         return TokenResponse(
             accessToken = accessToken,
             refreshToken = refreshToken
+        )
+    }
+
+    fun getAuthenticatedUser(token: String): UserInfo {
+        return userAdapter.get(
+            tokenProvider.getUserIdFromToken(token).toLong()
         )
     }
 }
