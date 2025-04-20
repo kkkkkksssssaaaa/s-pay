@@ -14,7 +14,7 @@ class TokenProvider {
         val expiration15Min = Date(System.currentTimeMillis() + 1000 * 60 * 15)
 
         val value = Jwts.builder()
-            .setSubject(user.userId)
+            .setSubject(user.id)
             .claim("roles", user.roles)
             .setIssuedAt(Date())
             .setExpiration(expiration15Min)
@@ -32,7 +32,7 @@ class TokenProvider {
         val expirationOneWeek = Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 7)
 
         val value = Jwts.builder()
-            .setSubject(user.userId)
+            .setSubject(user.id)
             .setIssuedAt(Date())
             .setExpiration(expirationOneWeek)
             .signWith(key)
