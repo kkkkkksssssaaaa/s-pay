@@ -1,5 +1,6 @@
 package dev.kkkkkksssssaaaa.spay.authorization.domain.token
 
+import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
 import org.springframework.stereotype.Component
@@ -52,6 +53,8 @@ class TokenProvider {
                 .build()
                 .parseClaimsJws(token)
             true
+        } catch (e: ExpiredJwtException) {
+            throw e
         } catch (e: Exception) {
             false
         }

@@ -1,7 +1,9 @@
 package dev.kkkkkksssssaaaa.spay.authorization.domain.token
 
+import com.fasterxml.jackson.annotation.JsonIgnore
+
 data class Token(
     val value: String,
-    val expiresIn: Long,
-    val userInfo: UserInfo
+    @JsonIgnore val expiresIn: Long,
+    @JsonIgnore val userInfo: UserInfo
 )
