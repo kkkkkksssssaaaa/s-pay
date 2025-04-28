@@ -1,9 +1,9 @@
 server:
-  port: 21002
+  port: 21003
 spring:
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:./database/wallet/schema;AUTO_SERVER=true;MODE=LEGACY
+    url: jdbc:h2:./database/auth/schema;AUTO_SERVER=true;MODE=LEGACY
     username: sa
     password:
   jpa:
@@ -14,7 +14,3 @@ spring:
       hibernate:
         format_sql: true
         show_sql: true
-
-logging:
-  level:
-    root: trace
